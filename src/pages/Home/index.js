@@ -1,7 +1,5 @@
 import { Layout } from 'antd'
 import React from 'react'
-import Sidebar from '../../components/Sidebar/index'
-import MyHeader from '../../components/Header'
 
 const { Content } = Layout
 

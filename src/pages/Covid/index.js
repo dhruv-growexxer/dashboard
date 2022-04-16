@@ -1,7 +1,4 @@
-import { Layout } from 'antd'
 import React, { useState } from 'react'
-import Sidebar from '../../components/Sidebar/index'
-import MyHeader from '../../components/Header'
 import { Content } from 'antd/lib/layout/layout'
 
 const Covid = () => {
