@@ -1,27 +1,21 @@
 import { Layout } from 'antd'
-import React, { useState } from 'react'
+import React from 'react'
 import Sidebar from '../../components/Sidebar/index'
 import MyHeader from '../../components/Header'
 import { Content } from 'antd/lib/layout/layout'
 
 const ContactList = () => {
   return (
-    <Layout>
-      <Sidebar />
-      <Layout className='site-layout'>
-        <MyHeader />
-        <Content
-          className='site-layout-background'
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          Contact List
-        </Content>
-      </Layout>
-    </Layout>
+    <Content
+      className='site-layout-background'
+      style={{
+        margin: '24px 16px',
+        padding: 24,
+        minHeight: 280,
+      }}
+    >
+      Contact List
+    </Content>
   )
 }
 
