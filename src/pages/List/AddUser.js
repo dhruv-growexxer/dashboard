@@ -39,6 +39,7 @@ const AddUser = () => {
         onCancel={() => {
           setVisible(false)
         }}
+        title='Add a new user'
       />
     </div>
   )

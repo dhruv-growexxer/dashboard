@@ -1,12 +1,12 @@
 import { Button, Form, Input, Modal } from 'antd'
 import React, { useState } from 'react'
 
-const MyForm = ({ visible, onCreate, onCancel }) => {
+const MyForm = ({ visible, onCreate, onCancel, title }) => {
   const [form] = Form.useForm()
   return (
     <Modal
       visible={visible}
-      title='Add a new user'
+      title={title}
       okText='Create'
       cancelText='Cancel'
       onCancel={onCancel}

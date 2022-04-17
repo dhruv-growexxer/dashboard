@@ -7,6 +7,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteUser } from '../../state/actions/userActions'
 import { bindActionCreators } from 'redux'
+import MyForm from '../../components/Form'
 
 const List = () => {
   const users = useSelector((state) => state.users)
@@ -16,6 +17,13 @@ const List = () => {
 
   const dispatch = useDispatch()
   const deleteUserComponenet = bindActionCreators(deleteUser, dispatch)
+
+  const [visible, setVisible] = useState(false)
+
+  const onCreate = (values) => {
+    console.log('Received values of form from index.js in list ', values)
+    setVisible(false)
+  }
 
   const columns = [
     {
@@ -43,7 +51,7 @@ const List = () => {
       render: (record) => {
         return (
           <>
-            <EditOutlined onClick={() => console.log('hi')} />
+            <EditOutlined onClick={() => setVisible(true)} />
             <DeleteOutlined
               onClick={() => {
                 Modal.confirm({
@@ -75,6 +83,14 @@ const List = () => {
       >
         <Table columns={columns} dataSource={users} rowKey='Id' />
       </Content>
+      <MyForm
+        visible={visible}
+        onCreate={onCreate}
+        onCancel={() => {
+          setVisible(false)
+        }}
+        title='Edit user'
+      />
     </>
   )
 }
