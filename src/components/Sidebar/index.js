@@ -6,14 +6,14 @@ import { useSelector } from 'react-redux'
 
 const { Sider } = Layout
 
-const Sidebar = ({ collapsed }) => {
+const Sidebar = () => {
   const stateCollapsed = useSelector((state) => state.toggleSide)
   let location = useLocation()
   //   console.log(location.pathname);
   let currentKey = 1
   if (location.pathname === '/') {
     currentKey = 1
-  } else if (location.pathname === '/contactlist') {
+  } else if (location.pathname === '/list') {
     currentKey = 2
   } else if (location.pathname === '/covid') {
     currentKey = 3
@@ -30,7 +30,7 @@ const Sidebar = ({ collapsed }) => {
           <Link to='/'>HOME</Link>
         </Menu.Item>
         <Menu.Item key='2' icon={<TeamOutlined />}>
-          <Link to='/contactlist'>CONTACT LIST</Link>
+          <Link to='/list'>LIST</Link>
         </Menu.Item>
         <Menu.Item key='3' icon={<GlobalOutlined />}>
           <Link to='/covid'>COVID</Link>

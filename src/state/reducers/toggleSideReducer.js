@@ -3,7 +3,7 @@ const initialState = false
 const toggleSideReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'TOGGLE_SIDE':
-      return !action.payload
+      return action.payload
     default:
       return state
   }
