@@ -1,7 +1,10 @@
+import { v4 as uuidv4 } from 'uuid'
+
 export const addUser = ({ name, email, address }) => {
   return {
     type: 'ADD_USER',
     payload: {
+      id: uuidv4(),
       name,
       email,
       address,
@@ -9,16 +12,16 @@ export const addUser = ({ name, email, address }) => {
   }
 }
 
-export const deleteUser = (toggleState) => {
+export const deleteUser = (deleteUser) => {
   return {
-    type: 'ADD_USER',
-    payload: toggleState,
+    type: 'DELETE_USER',
+    payload: deleteUser,
   }
 }
 
 export const updateUser = (toggleState) => {
   return {
-    type: 'ADD_USER',
+    type: 'UPDATE_USER',
     payload: toggleState,
   }
 }

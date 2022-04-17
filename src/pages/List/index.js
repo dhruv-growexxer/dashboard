@@ -4,13 +4,18 @@ import { Table } from 'antd'
 import AddUser from './AddUser'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteUser } from '../../state/actions/userActions'
+import { bindActionCreators } from 'redux'
 
 const List = () => {
   const users = useSelector((state) => state.users)
   // useEffect(() => {
-  //   console.log('userList from list', userList)
+  //   console.log('userList from list', users)
   // }, [])
+
+  const dispatch = useDispatch()
+  const deleteUserComponenet = bindActionCreators(deleteUser, dispatch)
 
   const columns = [
     {
@@ -35,12 +40,14 @@ const List = () => {
     },
     {
       title: 'Actions',
-      dataIndex: 'address',
       render: (record) => {
         return (
           <>
-            <EditOutlined />
-            <DeleteOutlined style={{ color: 'red', marginLeft: 15 }} />
+            <EditOutlined onClick={() => console.log('hi')} />
+            <DeleteOutlined
+              onClick={() => deleteUserComponenet(record)}
+              style={{ color: 'red', marginLeft: 15 }}
+            />
           </>
         )
       },

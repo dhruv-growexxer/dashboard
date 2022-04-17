@@ -8,9 +8,9 @@ import { bindActionCreators } from 'redux'
 
 const AddUser = () => {
   const users = useSelector((state) => state.users)
-  useEffect(() => {
-    console.log('userList from AddUser', users)
-  }, [users])
+  // useEffect(() => {
+  //   console.log('userList from AddUser', users)
+  // }, [users])
   const dispatch = useDispatch()
 
   const addUserComponent = bindActionCreators(addUser, dispatch)
