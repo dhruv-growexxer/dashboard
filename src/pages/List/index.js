@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Content } from 'antd/lib/layout/layout'
-import { Table } from 'antd'
+import { Modal, Table } from 'antd'
 import AddUser from './AddUser'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
@@ -45,7 +45,16 @@ const List = () => {
           <>
             <EditOutlined onClick={() => console.log('hi')} />
             <DeleteOutlined
-              onClick={() => deleteUserComponenet(record)}
+              onClick={() => {
+                Modal.confirm({
+                  title: 'Are you sure you want to delete this user?',
+                  okText: 'Yes',
+                  okType: 'danger',
+                  onOk: () => {
+                    deleteUserComponenet(record)
+                  },
+                })
+              }}
               style={{ color: 'red', marginLeft: 15 }}
             />
           </>
@@ -54,17 +63,19 @@ const List = () => {
     },
   ]
   return (
-    <Content
-      className='site-layout-background'
-      style={{
-        margin: '24px 16px',
-        padding: 24,
-        minHeight: 280,
-      }}
-    >
+    <>
       <AddUser />
-      <Table columns={columns} dataSource={users} rowKey='Id' />
-    </Content>
+      <Content
+        className='site-layout-background'
+        style={{
+          margin: '10px 16px',
+          padding: 24,
+          minHeight: 280,
+        }}
+      >
+        <Table columns={columns} dataSource={users} rowKey='Id' />
+      </Content>
+    </>
   )
 }
 

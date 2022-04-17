@@ -68,3 +68,9 @@
   padding: 15px;
   font-size: 20px;
 }
+
+.btn-adduser {
+  float: right;
+  margin-top: 10px;
+  margin-right: 16px;
+}

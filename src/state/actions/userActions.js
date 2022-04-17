@@ -12,10 +12,10 @@ export const addUser = ({ name, email, address }) => {
   }
 }
 
-export const deleteUser = (deleteUser) => {
+export const deleteUser = (deleteUserState) => {
   return {
     type: 'DELETE_USER',
-    payload: deleteUser,
+    payload: deleteUserState,
   }
 }
 

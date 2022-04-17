@@ -25,12 +25,13 @@ const AddUser = () => {
   return (
     <div>
       <Button
+        className='btn-adduser'
         type='primary'
         onClick={() => {
           setVisible(true)
         }}
       >
-        New User
+        Add User
       </Button>
       <MyForm
         visible={visible}

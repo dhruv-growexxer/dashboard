@@ -63,8 +63,8 @@ const MyForm = ({ visible, onCreate, onCancel }) => {
         >
           <Input.TextArea
             rows={4}
-            placeholder='maxLength is 20'
-            maxLength={20}
+            placeholder='maxLength is 40'
+            maxLength={40}
           />
         </Form.Item>
       </Form>
