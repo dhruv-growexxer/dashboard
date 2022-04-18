@@ -1,34 +1,35 @@
-import { Button } from 'antd'
-import React, { useEffect, useState } from 'react'
-import MyForm from '../../components/Form'
+import { Button } from "antd";
+import React, { useEffect, useState } from "react";
+import MyForm from "../../components/Form";
 
-import { useSelector, useDispatch } from 'react-redux'
-import { addUser } from '../../state/actions/userActions'
-import { bindActionCreators } from 'redux'
+import { useSelector, useDispatch } from "react-redux";
+import { addUser } from "../../state/actions/userActions";
+import { bindActionCreators } from "redux";
 
 const AddUser = () => {
-  const users = useSelector((state) => state.users)
+  const users = useSelector((state) => state.users);
   // useEffect(() => {
   //   console.log('userList from AddUser', users)
   // }, [users])
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const addUserComponent = bindActionCreators(addUser, dispatch)
+  const addUserComponent = bindActionCreators(addUser, dispatch);
 
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const onCreate = (values) => {
-    console.log('Received values of form: ', values)
-    addUserComponent(values)
-    setVisible(false)
-  }
+    // console.log('Received values of form: ', values)
+    addUserComponent(values);
+    setVisible(false);
+  };
   return (
     <div>
+      {visible && <h1>AddUser is visible</h1>}
       <Button
-        className='btn-adduser'
-        type='primary'
+        className="btn-adduser"
+        type="primary"
         onClick={() => {
-          setVisible(true)
+          setVisible(true);
         }}
       >
         Add User
@@ -37,12 +38,12 @@ const AddUser = () => {
         visible={visible}
         onCreate={onCreate}
         onCancel={() => {
-          setVisible(false)
+          setVisible(false);
         }}
-        title='Add a new user'
+        title="Add a new user"
       />
     </div>
-  )
-}
+  );
+};
 
-export default AddUser
+export default AddUser;
