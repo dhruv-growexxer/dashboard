@@ -1,16 +1,12 @@
 import { Button } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MyForm from "../../components/Form";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser } from "../../state/actions/userActions";
 import { bindActionCreators } from "redux";
 
 const AddUser = () => {
-  const users = useSelector((state) => state.users);
-  // useEffect(() => {
-  //   console.log('userList from AddUser', users)
-  // }, [users])
   const dispatch = useDispatch();
 
   const addUserComponent = bindActionCreators(addUser, dispatch);
@@ -24,7 +20,7 @@ const AddUser = () => {
   };
   return (
     <div>
-      {visible && <h1>AddUser is visible</h1>}
+      {/* {visible && <h1>AddUser is visible</h1>} */}
       <Button
         className="btn-adduser"
         type="primary"

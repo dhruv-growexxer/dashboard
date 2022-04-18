@@ -16,11 +16,11 @@ const List = () => {
   const dispatch = useDispatch();
   const deleteUserComponenet = bindActionCreators(deleteUser, dispatch);
   const columns = [
-    {
-      title: "Id",
-      dataIndex: "id",
-      key: "id",
-    },
+    // {
+    //   title: "Id",
+    //   dataIndex: "id",
+    //   key: "id",
+    // },
     {
       title: "Name",
       dataIndex: "name",

@@ -33,7 +33,7 @@ const userListReducer = (state = initialState, action) => {
       // console.log(newState)
       return newState;
     case "UPDATE_USER":
-      console.log(state, "state from user reducer");
+      // console.log(state, "state from user reducer");
       const updateItem = action.payload;
       // const existItem = state.find((user) => user.id === updateItem.id);
       const newArr = state.map((obj) => {
@@ -44,7 +44,7 @@ const userListReducer = (state = initialState, action) => {
         return obj;
       });
 
-      console.log(newArr, "newArr state from existItem");
+      // console.log(newArr, "newArr state from existItem");
       return newArr;
     default:
       return state;
