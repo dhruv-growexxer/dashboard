@@ -20,6 +20,8 @@ const List = () => {
       title: "Id",
       dataIndex: "id",
       key: "id",
+      width: 100,
+      ellipsis: true,
     },
     {
       title: "Name",

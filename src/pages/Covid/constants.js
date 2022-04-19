@@ -1,7 +1,7 @@
 import { Row, Select, Space } from "antd";
 import styled from "styled-components";
 
-export const PERIOD_OPTIONS = [
+export const NAME_STATE_OPTIONS = [
   {
     label: "Andhra Pradesh",
     value: "AP",
@@ -20,7 +20,7 @@ export const PERIOD_OPTIONS = [
   },
   {
     label: "Chhattisgarh",
-    value: "CG",
+    value: "CH",
   },
   {
     label: "Goa",
@@ -52,7 +52,7 @@ export const PERIOD_OPTIONS = [
   },
 ];
 
-export const PeriodDropDown = styled(Select)`
+export const NameStateDropDown = styled(Select)`
   width: 30%;
   float: right;
   min-width: 325px;
