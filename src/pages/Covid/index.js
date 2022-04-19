@@ -6,30 +6,15 @@ import { Content } from "antd/lib/layout/layout";
 import { Col, Row, Select, Statistic } from "antd";
 import { NameStateDropDown, NAME_STATE_OPTIONS } from "./constants";
 
-import { Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
-import { useDispatch, useSelector } from "react-redux";
-import { bindActionCreators } from "redux";
-
 import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   ResponsiveContainer,
-  AreaChart,
-  Area,
-  BarChart,
-  Bar,
   RadialBar,
   RadialBarChart,
 } from "recharts";
-
-const { Option } = Select;
 
 const Covid = () => {
   const [nameState, setNameState] = useState(NAME_STATE_OPTIONS[0].value);
@@ -44,11 +29,6 @@ const Covid = () => {
     fetchNameState();
   }, []);
 
-  // console.log(
-  //   dataState[nameState]?.delta,
-  //   "dataState from outside of use effect"
-  // );
-
   const fetchNameState = async () => {
     try {
       const { data } = await axios.get(
@@ -59,33 +39,40 @@ const Covid = () => {
       console.log("error from fetchNameState", error);
     } finally {
       console.log(
-        dataState[NAME_STATE_OPTIONS[0].value],
+        dataState[NAME_STATE_OPTIONS[0].value]?.delta,
         "dataState from inside of fetchNameState"
       );
       const item = [
         {
           name: "confirmed",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.confirmed,
+          fill: "#83a6ed",
         },
         {
           name: "deceased",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.deceased,
+          fill: "#8884d8",
         },
         {
           name: "recovered",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.recovered,
+          fill: "#8dd1e1",
         },
         {
           name: "tested",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.tested,
+
+          fill: "#82ca9d",
         },
         {
           name: "vaccinated1",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.vaccinated1,
+          fill: "#a4de6c",
         },
         {
           name: "vaccinated2",
           value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.vaccinated2,
+          fill: "#d0ed57",
         },
       ];
       setPData(item);
@@ -98,12 +85,10 @@ const Covid = () => {
       if (NAME_STATE_OPTIONS.hasOwnProperty(key)) {
         var { value, label } = NAME_STATE_OPTIONS[key];
         if (nameState === value) {
-          console.log(label, ": label");
           setStatisticTitle(label);
         }
       }
     }
-    // console.log(nameState, "NameState from onNameStateChange");
     setNameState(nameState);
     console.log(
       dataState[nameState]?.delta,
@@ -113,26 +98,32 @@ const Covid = () => {
       {
         name: "confirmed",
         value: dataState[nameState]?.delta.confirmed,
+        fill: "#83a6ed",
       },
       {
         name: "deceased",
         value: dataState[nameState]?.delta.deceased,
+        fill: "#8884d8",
       },
       {
         name: "recovered",
         value: dataState[nameState]?.delta.recovered,
+        fill: "#8dd1e1",
       },
       {
         name: "tested",
         value: dataState[nameState]?.delta.tested,
+        fill: "#82ca9d",
       },
       {
         name: "vaccinated1",
         value: dataState[nameState]?.delta.vaccinated1,
+        fill: "#a4de6c",
       },
       {
         name: "vaccinated2",
         value: dataState[nameState]?.delta.vaccinated2,
+        fill: "#d0ed57",
       },
     ];
     setPData(item);
@@ -167,12 +158,16 @@ const Covid = () => {
               />
             </Col>
           </Row>
-          <ResponsiveContainer width="100%" aspect={3}>
+          <ResponsiveContainer
+            className="container-chart"
+            width="100%"
+            aspect={3}
+          >
             <RadialBarChart
-              width={730}
-              height={250}
-              innerRadius="10%"
-              outerRadius="80%"
+              width={1000}
+              height={450}
+              innerRadius="30%"
+              outerRadius="100%"
               data={pdata}
               startAngle={180}
               endAngle={0}
