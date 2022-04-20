@@ -3,19 +3,22 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Content } from "antd/lib/layout/layout";
-import { Col, Row, Statistic } from "antd";
-import { createItem, NameStateDropDown, NAME_STATE_OPTIONS } from "./constants";
-
-import { LoadingOutlined } from "@ant-design/icons";
+import { Card, Col, Row, Statistic } from "antd";
+import {
+  createItem,
+  NameStateDropDown,
+  NAME_STATE_OPTIONS,
+  getCurrentDate,
+} from "./constants";
 
 import {
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  RadialBar,
-  RadialBarChart,
-} from "recharts";
+  LoadingOutlined,
+  ArrowUpOutlined,
+  ArrowDownOutlined,
+} from "@ant-design/icons";
+
 import MyRadialChart from "./MyRadialChart";
+import Date from "./Date";
 
 const Covid = () => {
   const [nameState, setNameState] = useState(NAME_STATE_OPTIONS[0].value);
@@ -55,7 +58,7 @@ const Covid = () => {
       }
     }
     const tempNameState = await nameState;
-    console.log(tempNameState, "tempNameState from onNameStateChange");
+    // console.log(tempNameState, "tempNameState from onNameStateChange");
     setNameState(nameState);
     setPData(createItem(dataState[tempNameState].delta));
   };
@@ -74,13 +77,16 @@ const Covid = () => {
       ) : (
         <>
           <Row gutter={16}>
-            <Col span={12}>
-              <Statistic
-                title={`Total Cases in ${statisticTitle}`}
-                value={dataState[nameState]?.total.confirmed}
-              />
+            <Col span={6}>
+              <Card>
+                <Statistic
+                  title={`Total Cases in ${statisticTitle}`}
+                  value={dataState[nameState]?.total.confirmed}
+                />
+              </Card>
             </Col>
-            <Col span={12}>
+            <Date />
+            <Col span={6}>
               <NameStateDropDown
                 placeholder="NameState"
                 onChange={onNameStateChange}
@@ -90,6 +96,100 @@ const Covid = () => {
             </Col>
           </Row>
           <MyRadialChart pdata={pdata} />
+          <div className="site-statistic-demo-card">
+            <Row gutter={16}>
+              <Col span={3}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowDownOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={4}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowDownOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={3}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowDownOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={4}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowDownOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={3}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowDownOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={4}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowUpOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+
+              <Col span={3}>
+                <Card>
+                  <Statistic
+                    title="Idle"
+                    value={9.3}
+                    precision={2}
+                    valueStyle={{ color: "#cf1322" }}
+                    prefix={<ArrowUpOutlined />}
+                    suffix="%"
+                  />
+                </Card>
+              </Col>
+            </Row>
+          </div>
         </>
       )}
     </Content>

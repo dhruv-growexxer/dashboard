@@ -9,7 +9,7 @@ import {
 
 const MyRadialChart = ({ pdata }) => {
   return (
-    <Row gutter={16}>
+    <Row gutter={16} style={{ height: "350px", paddingTop: 20 }}>
       <ResponsiveContainer width="100%" aspect={3}>
         <RadialBarChart
           width={1000}

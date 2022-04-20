@@ -86,3 +86,8 @@
   width: 100%;
   height: auto;
 }
+
+.site-statistic-demo-card {
+  padding: 30px;
+  background: #ececec;
+}
