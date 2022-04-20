@@ -70,7 +70,7 @@ export const createItem = (item) => {
     temp.name = key;
     temp.value = item[key];
     temp.fill = fill[index];
-    console.log(temp);
+    // console.log(temp);
     myObject.push(temp);
   });
 
