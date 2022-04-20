@@ -77,6 +77,23 @@ export const createItem = (item) => {
   return myObject;
 };
 
+export const createState = (stateObj) => {
+  var myObject = [];
+
+  // eslint-disable-next-line array-callback-return
+  Object.keys(stateObj).map((key, index) => {
+    const temp = {};
+    temp.name = key;
+    temp.confirmed = stateObj[key].total.confirmed;
+    temp.recovered = stateObj[key].total.recovered;
+    // temp.fill = fill[index];
+    // // console.log(temp);
+    myObject.push(temp);
+  });
+
+  return myObject;
+};
+
 export function getCurrentDate(separator = "") {
   let newDate = new Date();
   let date = newDate.getDate();

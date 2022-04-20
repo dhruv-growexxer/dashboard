@@ -9,6 +9,7 @@ import {
   NameStateDropDown,
   NAME_STATE_OPTIONS,
   getCurrentDate,
+  createState,
 } from "./constants";
 
 import {
@@ -19,10 +20,12 @@ import {
 
 import MyRadialChart from "./MyRadialChart";
 import Date from "./Date";
+import District from "./District";
 
 const Covid = () => {
   const [nameState, setNameState] = useState(NAME_STATE_OPTIONS[0].value);
   const [dataState, setDataState] = useState([]);
+  const [states, setStates] = useState([]);
   const [loader, setLoader] = useState(false);
   const [statisticTitle, setStatisticTitle] = useState("Andhra Pradesh");
 
@@ -39,6 +42,8 @@ const Covid = () => {
         "https://data.covid19india.org/v4/min/data.min.json"
       );
       setDataState(data);
+      // console.log(data[NAME_STATE_OPTIONS[0].value]);
+      setStates(createState(data[NAME_STATE_OPTIONS[0].value].districts));
 
       setPData(createItem(data[NAME_STATE_OPTIONS[0].value].delta));
     } catch (error) {
@@ -59,7 +64,9 @@ const Covid = () => {
     }
     const tempNameState = await nameState;
     // console.log(tempNameState, "tempNameState from onNameStateChange");
+    setStates(createState(dataState[nameState].districts));
     setNameState(nameState);
+    console.log(dataState[tempNameState]);
     setPData(createItem(dataState[tempNameState].delta));
   };
 
@@ -97,98 +104,7 @@ const Covid = () => {
           </Row>
           <MyRadialChart pdata={pdata} />
           <div className="site-statistic-demo-card">
-            <Row gutter={16}>
-              <Col span={3}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={4}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={3}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={4}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={3}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={4}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-
-              <Col span={3}>
-                <Card>
-                  <Statistic
-                    title="Idle"
-                    value={9.3}
-                    precision={2}
-                    valueStyle={{ color: "#cf1322" }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix="%"
-                  />
-                </Card>
-              </Col>
-            </Row>
+            <District states={states} />
           </div>
         </>
       )}
