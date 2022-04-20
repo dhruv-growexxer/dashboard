@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Content } from "antd/lib/layout/layout";
-import { Col, Row, Select, Statistic } from "antd";
-import { NameStateDropDown, NAME_STATE_OPTIONS } from "./constants";
+import { Col, Row, Statistic } from "antd";
+import { createItem, NameStateDropDown, NAME_STATE_OPTIONS } from "./constants";
 
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -35,52 +35,16 @@ const Covid = () => {
         "https://data.covid19india.org/v4/min/data.min.json"
       );
       setDataState(data);
+
+      setPData(createItem(data[NAME_STATE_OPTIONS[0].value].delta));
     } catch (error) {
       console.log("error from fetchNameState", error);
     } finally {
-      console.log(
-        dataState[NAME_STATE_OPTIONS[0].value]?.delta,
-        "dataState from inside of fetchNameState"
-      );
-      const item = [
-        {
-          name: "confirmed",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.confirmed,
-          fill: "#83a6ed",
-        },
-        {
-          name: "deceased",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.deceased,
-          fill: "#8884d8",
-        },
-        {
-          name: "recovered",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.recovered,
-          fill: "#8dd1e1",
-        },
-        {
-          name: "tested",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.tested,
-
-          fill: "#82ca9d",
-        },
-        {
-          name: "vaccinated1",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.vaccinated1,
-          fill: "#a4de6c",
-        },
-        {
-          name: "vaccinated2",
-          value: dataState[NAME_STATE_OPTIONS[0].value]?.delta.vaccinated2,
-          fill: "#d0ed57",
-        },
-      ];
-      setPData(item);
       setLoader(false);
     }
   };
 
-  const onNameStateChange = (nameState) => {
+  const onNameStateChange = async (nameState) => {
     for (let key in NAME_STATE_OPTIONS) {
       if (NAME_STATE_OPTIONS.hasOwnProperty(key)) {
         var { value, label } = NAME_STATE_OPTIONS[key];
@@ -89,44 +53,10 @@ const Covid = () => {
         }
       }
     }
+    const tempNameState = await nameState;
+    console.log(tempNameState, "tempNameState from onNameStateChange");
     setNameState(nameState);
-    console.log(
-      dataState[nameState]?.delta,
-      "NameState from onNameStateChange"
-    );
-    const item = [
-      {
-        name: "confirmed",
-        value: dataState[nameState]?.delta.confirmed,
-        fill: "#83a6ed",
-      },
-      {
-        name: "deceased",
-        value: dataState[nameState]?.delta.deceased,
-        fill: "#8884d8",
-      },
-      {
-        name: "recovered",
-        value: dataState[nameState]?.delta.recovered,
-        fill: "#8dd1e1",
-      },
-      {
-        name: "tested",
-        value: dataState[nameState]?.delta.tested,
-        fill: "#82ca9d",
-      },
-      {
-        name: "vaccinated1",
-        value: dataState[nameState]?.delta.vaccinated1,
-        fill: "#a4de6c",
-      },
-      {
-        name: "vaccinated2",
-        value: dataState[nameState]?.delta.vaccinated2,
-        fill: "#d0ed57",
-      },
-    ];
-    setPData(item);
+    setPData(createItem(dataState[tempNameState].delta));
   };
 
   return (

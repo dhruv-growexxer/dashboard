@@ -52,6 +52,31 @@ export const NAME_STATE_OPTIONS = [
   },
 ];
 
+export const fill = [
+  "#83a6ed",
+  "#8884d8",
+  "#8dd1e1",
+  "#82ca9d",
+  "#a4de6c",
+  "#d0ed57",
+];
+
+export const createItem = (item) => {
+  var myObject = [];
+
+  // eslint-disable-next-line array-callback-return
+  Object.keys(item).map((key, index) => {
+    const temp = {};
+    temp.name = key;
+    temp.value = item[key];
+    temp.fill = fill[index];
+    console.log(temp);
+    myObject.push(temp);
+  });
+
+  return myObject;
+};
+
 export const NameStateDropDown = styled(Select)`
   width: 30%;
   float: right;
