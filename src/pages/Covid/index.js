@@ -88,38 +88,49 @@ const Covid = () => {
               />
             </Col>
           </Row>
-          <ResponsiveContainer
-            className="container-chart"
-            width="100%"
-            aspect={3}
-          >
-            <RadialBarChart
-              width={1000}
-              height={450}
-              innerRadius="30%"
-              outerRadius="100%"
-              data={pdata}
-              startAngle={180}
-              endAngle={0}
-            >
-              <RadialBar
-                minAngle={100}
-                label={{ fill: "#666", position: "insideStart" }}
-                background
-                clockWise={true}
-                dataKey="value"
-              />
-              <Legend
-                iconSize={10}
-                width={120}
-                height={140}
-                layout="vertical"
-                verticalAlign="middle"
-                align="right"
-              />
-              <Tooltip />
-            </RadialBarChart>
-          </ResponsiveContainer>
+          <Row>
+            <ResponsiveContainer width="100%" aspect={3}>
+              <RadialBarChart
+                width={1000}
+                height={450}
+                innerRadius="30%"
+                outerRadius="100%"
+                data={pdata}
+                startAngle={180}
+                endAngle={0}
+              >
+                <RadialBar
+                  minAngle={100}
+                  label={{
+                    fill: "#000999",
+                    position: "insideStart",
+                    fontStyle: "bold",
+                  }}
+                  background
+                  clockWise={true}
+                  dataKey="value"
+                />
+                <Legend
+                  width={180}
+                  wrapperStyle={{
+                    top: 40,
+                    left: 45,
+                    backgroundColor: "#F0F0F0",
+                    border: "1px solid #000",
+                    borderRadius: 3,
+                    lineHeight: "40px",
+                    padding: 10,
+                    paddingLeft: 22,
+                  }}
+                  iconSize={15}
+                  height="auto"
+                  layout="vertical"
+                  verticalAlign="middle"
+                />
+                <Tooltip />
+              </RadialBarChart>
+            </ResponsiveContainer>
+          </Row>
         </>
       )}
     </Content>

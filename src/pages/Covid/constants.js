@@ -53,12 +53,12 @@ export const NAME_STATE_OPTIONS = [
 ];
 
 export const fill = [
-  "#83a6ed",
-  "#8884d8",
+  "#000333",
+  "#8055aa",
   "#8dd1e1",
-  "#82ca9d",
-  "#a4de6c",
-  "#d0ed57",
+  "#333999",
+  "#666333",
+  "#83a6ed",
 ];
 
 export const createItem = (item) => {
