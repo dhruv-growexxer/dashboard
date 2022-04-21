@@ -8,15 +8,10 @@ import {
   createItem,
   NameStateDropDown,
   NAME_STATE_OPTIONS,
-  getCurrentDate,
   createState,
 } from "./constants";
 
-import {
-  LoadingOutlined,
-  ArrowUpOutlined,
-  ArrowDownOutlined,
-} from "@ant-design/icons";
+import { LoadingOutlined } from "@ant-design/icons";
 
 import MyRadialChart from "./MyRadialChart";
 import Date from "./Date";
