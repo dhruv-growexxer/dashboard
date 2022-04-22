@@ -88,6 +88,50 @@
 }
 
 .site-statistic-demo-card {
-  padding: 30px;
+  padding: 20px;
   background: #ececec;
+  border-radius: 3px;
+  padding-bottom: 15px;
+  height: 180px;
+}
+
+/* .app {
+  display: grid;
+  grid-template-columns: 20px 1fr 20px;
+}
+.app > * {
+  grid-column: 2 / -2;
+}
+.app > .full {
+  grid-column: 1 / -1;
+}
+
+.hs {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(6, calc(50% - 40px));
+  grid-template-rows: minmax(150px, 1fr);
+} */
+
+.wrapper {
+  min-height: 120px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.wrapper .item {
+  min-width: 110px;
+
+  line-height: 110px;
+  /* text-align: center; */
+  background-color: #dd8;
+  margin-right: 4px;
+}
+
+.ant-card {
+  margin-bottom: 10px;
+}
+
+.ant-list-items {
+  display: flex;
 }
