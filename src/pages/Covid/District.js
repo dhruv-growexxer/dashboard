@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { ArrowDownOutlined } from "@ant-design/icons";
 const District = ({ states }) => {
   useEffect(() => {
-    console.log(states);
+    // console.log(states);
   }, []);
   return (
     <>

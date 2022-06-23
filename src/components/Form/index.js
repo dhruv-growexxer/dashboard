@@ -25,7 +25,7 @@ const MyForm = ({ visible, onCreate, onCancel, title, user }) => {
             onCreate(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            // console.log("Validate Failed:", info);
           });
       }}
     >

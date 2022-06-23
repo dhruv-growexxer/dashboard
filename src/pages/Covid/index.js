@@ -37,12 +37,15 @@ const Covid = () => {
         "https://data.covid19india.org/v4/min/data.min.json"
       );
       setDataState(data);
-      // console.log(data[NAME_STATE_OPTIONS[0].value]);
+      // console.log(
+      //   data[NAME_STATE_OPTIONS[0].value].districts,
+      //   "required data for createState"
+      // );
       setStates(createState(data[NAME_STATE_OPTIONS[0].value].districts));
 
       setPData(createItem(data[NAME_STATE_OPTIONS[0].value].delta));
     } catch (error) {
-      console.log("error from fetchNameState", error);
+      // console.log("error from fetchNameState", error);
     } finally {
       setLoader(false);
     }
@@ -94,6 +97,7 @@ const Covid = () => {
                 onChange={onNameStateChange}
                 options={NAME_STATE_OPTIONS}
                 value={nameState}
+                data-testid="state-name"
               />
             </Col>
           </Row>
