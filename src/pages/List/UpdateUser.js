@@ -15,15 +15,12 @@ const UpdateUser = ({ user }) => {
 
   const onCreate = (values) => {
     values.id = user.id;
-    // console.log(user.id + "uesr id from updateUser in onCreate");
     updateUserComponent(values);
-    // console.log("Received values of form: ", values);
 
     setVisible(false);
   };
   return (
     <>
-      {/* {visible && <h1>{user.id}</h1>} */}
       <EditOutlined
         type="primary"
         onClick={() => {

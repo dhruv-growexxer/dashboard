@@ -6,7 +6,6 @@ export const fetchStateData = () => async () => {
       "https://data.covid19india.org/v4/min/data.min.json"
     );
 
-    // console.log(data, "dataState from inside of fetchNameState");
     return {
       type: "GET_STATE_DATE",
       payload: data,

@@ -10,6 +10,8 @@ import { dummyResponse } from "./tempResponse";
 
 jest.mock("axios");
 
+const onChangeMock = jest.fn();
+
 const render = (Component) =>
   rtlRender(
     <Provider store={store()}>
@@ -24,7 +26,7 @@ describe("<Covid />", () => {
       value: jest.fn().mockImplementation((query) => ({
         matches: false,
         media: query,
-        onchange: null,
+        onchange: jest.fn(),
         addListener: jest.fn(), // Deprecated
         removeListener: jest.fn(), // Deprecated
         addEventListener: jest.fn(),
@@ -39,35 +41,29 @@ describe("<Covid />", () => {
     expect(<Covid />).toBeTruthy();
   });
   test("change state from dropdown", async () => {
-    // const { findByText } = render(<Covid />);
-    // expect(<Covid />).toBeTruthy();
-    // fireEvent.click(await findByText("Andhra Pradesh"));
-    const { getByText, getByRole, findByRole, findByTestId } = render(
-      <Covid />
-    );
-    await findByRole("combobox");
-    // await waitForElement(() => getByRole("combobox"));
-    fireEvent.click(await findByTestId("state-name"));
+    const {
+      getByTestId,
 
-    // fireEvent.mouseDown(getByRole("combobox"));
-    // fireEvent.change(getByRole("combobox"), {
-    //   target: {
-    //     value: "Assam",
-    //   },
-    // });
+      getByRole,
+      findByRole,
+
+      container,
+    } = render(<Covid />);
+
+    await findByRole("combobox");
+    const select = container.querySelector(".ant-select-selection-item");
+    fireEvent.mouseDown(select); // this should open select in unit tests
+
     // .ant-select-item-option-content
-    screen.debug();
     fireEvent.click(
       document.querySelectorAll(".ant-select-item-option-content")[1]
     );
     fireEvent.blur(getByRole("combobox"));
     fireEvent.focus(getByRole("combobox"));
+    // screen.debug();
 
-    // fireEvent.click(await findByTestId("state-name"));
-    // console.log(screen.getAllByRole("combobox"), "combobox ");
-    // fireEvent.click(await findByText(/assam/i));
-    // axios.mockResolvedValue(dummyState);
-    // expect(getByTestId("state-name")).toBeTruthy();
+    axios.mockResolvedValue(dummyResponse);
+    expect(getByTestId("state-name")).toBeTruthy();
   });
 });
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Content } from "antd/lib/layout/layout";
-import { Card, Col, Row, Statistic } from "antd";
+import { Card, Col, Row, Statistic, Select } from "antd";
 import {
   createItem,
   NameStateDropDown,
@@ -17,6 +17,7 @@ import MyRadialChart from "./MyRadialChart";
 import Date from "./Date";
 import District from "./District";
 
+const { Option } = Select;
 const Covid = () => {
   const [nameState, setNameState] = useState(NAME_STATE_OPTIONS[0].value);
   const [dataState, setDataState] = useState([]);
@@ -37,12 +38,7 @@ const Covid = () => {
         "https://data.covid19india.org/v4/min/data.min.json"
       );
       setDataState(data);
-      // console.log(
-      //   data[NAME_STATE_OPTIONS[0].value].districts,
-      //   "required data for createState"
-      // );
       setStates(createState(data[NAME_STATE_OPTIONS[0].value].districts));
-
       setPData(createItem(data[NAME_STATE_OPTIONS[0].value].delta));
     } catch (error) {
       // console.log("error from fetchNameState", error);
@@ -61,10 +57,8 @@ const Covid = () => {
       }
     }
     const tempNameState = await nameState;
-    // console.log(tempNameState, "tempNameState from onNameStateChange");
     setStates(createState(dataState[nameState].districts));
     setNameState(nameState);
-    console.log(dataState[tempNameState]);
     setPData(createItem(dataState[tempNameState].delta));
   };
 
@@ -95,10 +89,16 @@ const Covid = () => {
               <NameStateDropDown
                 placeholder="NameState"
                 onChange={onNameStateChange}
-                options={NAME_STATE_OPTIONS}
-                value={nameState}
+                // options={NAME_STATE_OPTIONS}
+                defaultValue={nameState}
                 data-testid="state-name"
-              />
+              >
+                {NAME_STATE_OPTIONS.map((sName) => (
+                  <Option key={sName.value} value={sName.value}>
+                    {sName.label}
+                  </Option>
+                ))}
+              </NameStateDropDown>
             </Col>
           </Row>
           <MyRadialChart pdata={pdata} />
