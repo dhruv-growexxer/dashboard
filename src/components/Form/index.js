@@ -8,7 +8,6 @@ const MyForm = ({ visible, onCreate, onCancel, title, user }) => {
     if (visible) {
       form.setFieldsValue(user);
     }
-    // console.log(user, "user from index.js in MyForm");
   }, [visible]);
   return (
     <Modal
@@ -25,7 +24,7 @@ const MyForm = ({ visible, onCreate, onCancel, title, user }) => {
             onCreate(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            // console.log("Validate Failed:", info);
           });
       }}
     >

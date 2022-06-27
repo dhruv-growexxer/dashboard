@@ -55,6 +55,7 @@ const List = () => {
                   },
                 });
               }}
+              data-testid="delete-test"
               style={{ color: "red", marginLeft: 15 }}
             />
           </>

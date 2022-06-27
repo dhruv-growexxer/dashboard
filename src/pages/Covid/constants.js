@@ -43,10 +43,6 @@ export const NAME_STATE_OPTIONS = [
     value: "JK",
   },
   {
-    label: "Jharkhand",
-    value: "JH",
-  },
-  {
     label: "Karnataka",
     value: "KA",
   },
@@ -70,7 +66,6 @@ export const createItem = (item) => {
     temp.name = key;
     temp.value = item[key];
     temp.fill = fill[index];
-    // console.log(temp);
     myObject.push(temp);
   });
 
@@ -87,7 +82,6 @@ export const createState = (stateObj) => {
     temp.confirmed = stateObj[key].total.confirmed;
     temp.recovered = stateObj[key].total.recovered;
     // temp.fill = fill[index];
-    // // console.log(temp);
     myObject.push(temp);
   });
 

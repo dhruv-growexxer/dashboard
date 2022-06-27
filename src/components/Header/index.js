@@ -9,8 +9,9 @@ import { bindActionCreators } from "redux";
 import { toggleSide } from "../../state/actions/toggleActions";
 import { Avatar } from "antd";
 
-const MyHeader = () => {
-  const stateCollapsed = useSelector((state) => state.toggleSide);
+const MyHeader = ({ initialState }) => {
+  const stateCollapsed =
+    useSelector((state) => state.toggleSide) || initialState;
 
   const dispatch = useDispatch();
 
@@ -22,11 +23,13 @@ const MyHeader = () => {
         <MenuUnfoldOutlined
           onClick={() => toggleSide1(stateCollapsed)}
           className="trigger"
+          data-testid="toggle-false"
         />
       ) : (
         <MenuFoldOutlined
           onClick={() => toggleSide1(stateCollapsed)}
           className="trigger"
+          data-testid="toggle-true"
         />
       )}
       <Avatar size={35} icon={<UserOutlined />} className="header-avatar" />

@@ -2,6 +2,19 @@
   "name": "react_dashboard",
   "version": "0.1.0",
   "private": true,
+  "babel": {
+    "presets": [
+      "@babel/react",
+      "@babel/env"
+    ],
+    "plugins": [
+      "@babel/proposal-class-properties",
+      "@babel/plugin-transform-runtime"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
@@ -25,8 +38,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:clean": "rimraf ./coverage",
+    "test": "jest --coverage",
+    "test:snapshot": "jest --coverage --updateSnapshot",
+    "test:watch": "jest --watchAll",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.3.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "identity-obj-proxy": "^3.0.0"
   },
   "eslintConfig": {
     "extends": [

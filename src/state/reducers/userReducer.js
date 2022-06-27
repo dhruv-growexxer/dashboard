@@ -28,14 +28,10 @@ const userListReducer = (state = initialState, action) => {
       return [...state, item];
 
     case "DELETE_USER":
-      // console.log(action.payload, 'actions from delete_user')
       const newState = state.filter((user) => user.id !== action.payload.id);
-      // console.log(newState)
       return newState;
     case "UPDATE_USER":
-      // console.log(state, "state from user reducer");
       const updateItem = action.payload;
-      // const existItem = state.find((user) => user.id === updateItem.id);
       const newArr = state.map((obj) => {
         if (obj.id === action.payload.id) {
           return updateItem;
@@ -44,7 +40,6 @@ const userListReducer = (state = initialState, action) => {
         return obj;
       });
 
-      // console.log(newArr, "newArr state from existItem");
       return newArr;
     default:
       return state;
